@@ -1,20 +1,19 @@
-<div class="container">
+<div class="container d-flex justify-content-center align-items-center vh-100">
 
-    <div class="row justify-content-center mt-5">
+    <div class="card shadow-lg border-0 rounded-4 login-card">
 
-        <div class="col-md-5">
+        <div class="card-body p-5">
 
-            <div class="card shadow">
+            <div class="text-center mb-4">
 
-                <div class="card-header bg-dark text-white text-center">
-<!-- Actualizacion para hacer Pull Request -->
+                <div class="text-success fw-bold">
                     <h3>Gym Inacap - Login</h3>
 
                 </div>
 
                 <div class="card-body">
 
-                    <h4 class="text-center mb-4">
+                    <h4 class="text-muted">
 
                         Iniciar Sesión
 
@@ -22,7 +21,7 @@
 
                     <div class="mb-3">
 
-                        <label class="form-label">
+                        <label class="form-label fw-semibold">
 
                             Usuario
 
@@ -39,7 +38,7 @@
 
                     <div class="mb-3">
 
-                        <label class="form-label">
+                        <label class="form-label fw-semibold">
 
                             Contraseña
 
@@ -55,7 +54,7 @@
                     </div>
 
                     <button
-                        class="btn btn-success w-100"
+                        class="alert alert-danger text-center mt-3"
                         (click)="ingresar()">
 
                         Ingresar
