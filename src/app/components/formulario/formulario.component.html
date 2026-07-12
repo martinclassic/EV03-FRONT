@@ -1,100 +1,122 @@
-<div class="container mt-5 mb-5">
-    <h2 class="text-warning fw-bold mb-4">
-        <i class="bi bi-clipboard-check me-2"></i>Formulario de Inscripción
-    </h2>
+<div class="container">
 
-    <form #formInscripcion="ngForm" (ngSubmit)="enviar(formInscripcion)">
+    <div class="row justify-content-center mt-5 mb-5">
 
-        <!-- Nombre -->
-        <div class="mb-3">
-            <label class="form-label text-warning">Nombre</label>
-            <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required minlength="3"
-                #nombreRef="ngModel" [class.is-invalid]="nombreRef.invalid && nombreRef.touched">
+        <div class="col-md-6">
 
-            <div *ngIf="nombreRef.invalid && nombreRef.touched" class="text-danger">
-                <small *ngIf="nombreRef.errors?.['required']">
-                    El nombre es obligatorio
-                </small>
-                <small *ngIf="nombreRef.errors?.['minlength']">
-                    Mínimo 3 caracteres
-                </small>
+            <div class="card shadow">
+
+                <div class="card-header bg-dark text-white text-center">
+
+                    <h3><i class="bi bi-clipboard-check me-2"></i>Gym Inacap - Inscripción</h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <h4 class="text-center mb-4">
+                        Formulario de Inscripción
+                    </h4>
+
+                    <form #formInscripcion="ngForm" (ngSubmit)="enviar(formInscripcion)">
+
+                        <!-- Nombre -->
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required
+                                minlength="3" placeholder="Ingrese su nombre" #nombreRef="ngModel"
+                                [class.is-invalid]="nombreRef.invalid && nombreRef.touched">
+
+                            <div *ngIf="nombreRef.invalid && nombreRef.touched" class="text-danger">
+                                <small *ngIf="nombreRef.errors?.['required']">
+                                    El nombre es obligatorio
+                                </small>
+                                <small *ngIf="nombreRef.errors?.['minlength']">
+                                    Mínimo 3 caracteres
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Rutina -->
+                        <div class="mb-3">
+                            <label class="form-label">Rutina</label>
+                            <select class="form-select" name="rutina" [(ngModel)]="rutina" required
+                                #rutinaRef="ngModel" [class.is-invalid]="rutinaRef.invalid && rutinaRef.touched">
+                                <option [ngValue]="null" disabled>Selecciona una rutina</option>
+                                <option value="musculacion">Musculación</option>
+                                <option value="cardio">Cardio</option>
+                                <option value="crossfit">Crossfit</option>
+                                <option value="funcional">Entrenamiento Funcional</option>
+                                <option value="yoga">Yoga</option>
+                            </select>
+
+                            <div *ngIf="rutinaRef.invalid && rutinaRef.touched" class="text-danger">
+                                <small *ngIf="rutinaRef.errors?.['required']">
+                                    Debes seleccionar una rutina
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Horario -->
+                        <div class="mb-3">
+                            <label class="form-label">Horario</label>
+                            <select class="form-select" name="horario" [(ngModel)]="horario" required
+                                #horarioRef="ngModel" [class.is-invalid]="horarioRef.invalid && horarioRef.touched">
+                                <option [ngValue]="null" disabled>Selecciona un horario</option>
+                                <option value="manana">Mañana (07:00 - 11:00)</option>
+                                <option value="tarde">Tarde (14:00 - 18:00)</option>
+                                <option value="noche">Noche (18:00 - 22:00)</option>
+                            </select>
+
+                            <div *ngIf="horarioRef.invalid && horarioRef.touched" class="text-danger">
+                                <small *ngIf="horarioRef.errors?.['required']">
+                                    Debes seleccionar un horario
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" name="email" [(ngModel)]="email" required email
+                                placeholder="Ingrese su correo" #emailRef="ngModel"
+                                [class.is-invalid]="emailRef.invalid && emailRef.touched">
+
+                            <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger">
+                                <small *ngIf="emailRef.errors?.['required']">
+                                    El correo es obligatorio
+                                </small>
+                                <small *ngIf="emailRef.errors?.['email']">
+                                    Formato de correo inválido
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Botón -->
+                        <button class="btn btn-success w-100 fw-bold" type="submit"
+                            [disabled]="formInscripcion.invalid">
+                            <i class="bi bi-send me-1"></i>Inscribirme
+                        </button>
+
+                    </form>
+
+                    <!-- RESULTADO GUARDADO -->
+                    <div *ngIf="datosGuardados" class="alert alert-dark mt-4 border border-success">
+                        <h5 class="text-success">
+                            <i class="bi bi-check-circle me-2"></i>Inscripción registrada
+                        </h5>
+                        <p class="mb-1"><strong>Nombre:</strong> {{ datosGuardados.nombre }}</p>
+                        <p class="mb-1"><strong>Rutina:</strong> {{ etiquetaRutina(datosGuardados.rutina) }}</p>
+                        <p class="mb-1"><strong>Horario:</strong> {{ etiquetaHorario(datosGuardados.horario) }}</p>
+                        <p class="mb-0"><strong>Correo:</strong> {{ datosGuardados.email }}</p>
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
 
-        <!-- Rutina -->
-        <div class="mb-3">
-            <label class="form-label text-warning">Rutina</label>
-            <select class="form-select" name="rutina" [(ngModel)]="rutina" required
-                #rutinaRef="ngModel" [class.is-invalid]="rutinaRef.invalid && rutinaRef.touched">
-                <option [ngValue]="null" disabled>Selecciona una rutina</option>
-                <option value="musculacion">Musculación</option>
-                <option value="cardio">Cardio</option>
-                <option value="crossfit">Crossfit</option>
-                <option value="funcional">Entrenamiento Funcional</option>
-                <option value="yoga">Yoga</option>
-            </select>
-
-            <div *ngIf="rutinaRef.invalid && rutinaRef.touched" class="text-danger">
-                <small *ngIf="rutinaRef.errors?.['required']">
-                    Debes seleccionar una rutina
-                </small>
-            </div>
-        </div>
-
-        <!-- Horario -->
-        <div class="mb-3">
-            <label class="form-label text-warning">Horario</label>
-            <select class="form-select" name="horario" [(ngModel)]="horario" required
-                #horarioRef="ngModel" [class.is-invalid]="horarioRef.invalid && horarioRef.touched">
-                <option [ngValue]="null" disabled>Selecciona un horario</option>
-                <option value="manana">Mañana (07:00 - 11:00)</option>
-                <option value="tarde">Tarde (14:00 - 18:00)</option>
-                <option value="noche">Noche (18:00 - 22:00)</option>
-            </select>
-
-            <div *ngIf="horarioRef.invalid && horarioRef.touched" class="text-danger">
-                <small *ngIf="horarioRef.errors?.['required']">
-                    Debes seleccionar un horario
-                </small>
-            </div>
-        </div>
-
-        <!-- Email -->
-        <div class="mb-3">
-            <label class="form-label text-warning">Correo electrónico</label>
-            <input type="email" class="form-control" name="email" [(ngModel)]="email" required email
-                #emailRef="ngModel" [class.is-invalid]="emailRef.invalid && emailRef.touched">
-
-            <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger">
-                <small *ngIf="emailRef.errors?.['required']">
-                    El correo es obligatorio
-                </small>
-                <small *ngIf="emailRef.errors?.['email']">
-                    Formato de correo inválido
-                </small>
-            </div>
-        </div>
-
-        <!-- Botón -->
-        <button class="btn btn-warning fw-bold" type="submit" [disabled]="formInscripcion.invalid">
-            <i class="bi bi-send me-1"></i>Inscribirme
-        </button>
-
-    </form>
-
-    <!-- RESULTADO GUARDADO -->
-    <hr class="border-warning">
-
-    <div *ngIf="datosGuardados" class="card bg-dark text-warning mt-4 border border-warning">
-        <div class="card-body">
-            <h5 class="card-title">
-                <i class="bi bi-check-circle me-2"></i>Inscripción registrada
-            </h5>
-            <p class="mb-1"><strong>Nombre:</strong> {{ datosGuardados.nombre }}</p>
-            <p class="mb-1"><strong>Rutina:</strong> {{ etiquetaRutina(datosGuardados.rutina) }}</p>
-            <p class="mb-1"><strong>Horario:</strong> {{ etiquetaHorario(datosGuardados.horario) }}</p>
-            <p class="mb-0"><strong>Correo:</strong> {{ datosGuardados.email }}</p>
-        </div>
     </div>
 
 </div>
