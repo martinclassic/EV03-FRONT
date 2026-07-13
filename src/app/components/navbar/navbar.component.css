@@ -1,16 +1,17 @@
 .navbar{
-    box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
 
-.navbar-brand{
-    font-size: 1.4rem;
-    font-weight: bold;
+    border-bottom:3px solid #198754;
+
 }
 
 .nav-link{
-    transition: .3s;
+
+    transition:.3s;
+
 }
 
 .nav-link:hover{
-    color:#ffc107 !important;
+
+    color:#19ff72 !important;
+
 }

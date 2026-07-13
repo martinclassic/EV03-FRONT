@@ -1,24 +1,28 @@
-body{
-    background: #f5f5f5;
-}
-
 .login-card{
-    width: 430px;
+
+    border-radius:20px;
+    width:430px;
+
 }
 
 .card{
-    transition: .3s;
-}
 
-.card:hover{
-    transform: scale(1.02);
+    border:none;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+
 }
 
 .form-control{
-    border-radius: 12px;
+
+    border-radius:10px;
+
 }
 
 .btn{
-    border-radius: 12px;
-    font-weight: bold;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
 }
