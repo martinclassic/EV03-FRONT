@@ -1,15 +1,28 @@
-body{
-    background:#f4f4f4;
+.login-card{
+
+    border-radius:20px;
+    width:430px;
+
 }
 
 .card{
-    border-radius:15px;
+
+    border:none;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+
 }
 
-.card-header{
-    font-size:20px;
+.form-control{
+
+    border-radius:10px;
+
 }
 
-button{
+.btn{
+
+    border-radius:10px;
+
     font-weight:bold;
+
 }
