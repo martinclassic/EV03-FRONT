@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -37,8 +38,14 @@ export class FormularioComponent implements OnInit {
     tarde: 'Tarde (14:00 - 18:00)',
     noche: 'Noche (18:00 - 22:00)'
   };
-
+constructor(private router: Router){}
   ngOnInit() {
+    if(localStorage.getItem('logueado') !== 'true'){
+
+    this.router.navigate(['/']);
+    return;
+
+    }
     const data = localStorage.getItem('formulario');
     if (data) {
       this.datosGuardados = JSON.parse(data);
