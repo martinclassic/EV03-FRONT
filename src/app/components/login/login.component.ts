@@ -22,7 +22,7 @@ export class LoginComponent {
   ingresar(){
 
     if(this.usuario === 'admin' && this.password === '1234'){
-
+        localStorage.setItem('logueado','true');
       this.router.navigate(['/formulario']);
 
     }else{
